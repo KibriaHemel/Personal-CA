@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal CA | Free Tax Intelligence</title>
+  <meta name="description" content="Personal CA helps individuals calculate taxes for Bangladesh, India and USA with guided questions, references, PDF reports and privacy-first local profiles." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+  <header class="nav glass">
+    <a class="brand" href="#top" aria-label="Personal CA home">
+      <span class="brand-mark">CA</span>
+      <span><strong>Personal CA</strong><small>Free tax intelligence</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#workflow">Workflow</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#laws">Tax library</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="ghost" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+      <button class="ghost" id="profileBtn" type="button">Profile</button>
+      <button class="primary small" id="openAuth" type="button">Login</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-copy">
+        <div class="eyebrow">Bangladesh · India · USA</div>
+        <h1>Your futuristic personal chartered accountant.</h1>
+        <p class="lead">Personal CA asks only the questions that matter, explains every tax line, saves yearly records privately and gives practical tax-reduction ideas with law references.</p>
+        <div class="hero-actions">
+          <a class="primary" href="#calculator">Start free calculation</a>
+          <a class="secondary" href="#laws">Explore tax categories</a>
+        </div>
+        <div class="trust-row" aria-label="Trust signals">
+          <span>🔒 Privacy-first</span>
+          <span>📄 PDF report</span>
+          <span>⚖️ Law references</span>
+          <span>🌐 Responsive UI</span>
+        </div>
+      </div>
+      <div class="hero-card glass" aria-label="Preview dashboard">
+        <div class="scan-line"></div>
+        <div class="card-top">
+          <span class="status-dot"></span>
+          <span>Assessment preview</span>
+          <strong id="previewCountry">Bangladesh</strong>
+        </div>
+        <div class="metric-grid">
+          <div><small>Taxable income</small><strong id="previewIncome">৳0</strong></div>
+          <div><small>Estimated tax</small><strong id="previewTax">৳0</strong></div>
+          <div><small>Effective rate</small><strong id="previewRate">0%</strong></div>
+          <div><small>Potential savings</small><strong id="previewSavings">৳0</strong></div>
+        </div>
+        <div class="progress-shell"><span id="heroProgress"></span></div>
+        <p class="micro">Numbers update when you complete the guided calculation.</p>
+      </div>
+    </section>
+
+    <section class="section feature-strip" id="workflow">
+      <article class="feature glass"><span>01</span><h3>Register/Login</h3><p>Local demo authentication keeps each profile separate. Production-ready notes are included for secure server auth.</p></article>
+      <article class="feature glass"><span>02</span><h3>Smart questions</h3><p>The app adapts to country, job type, deductions, dependents and investment eligibility.</p></article>
+      <article class="feature glass"><span>03</span><h3>Explainable tax</h3><p>Every result shows slabs, deductions, calculation lines and matching references.</p></article>
+      <article class="feature glass"><span>04</span><h3>Reports & history</h3><p>Download/print PDF reports and manage yearly calculations from the profile area.</p></article>
+    </section>
+
+    <section class="section app-shell" id="calculator">
+      <div class="panel glass auth-panel">
+        <div class="section-head compact">
+          <span class="eyebrow">Account</span>
+          <h2>Private workspace</h2>
+          <p>Sign in to save calculations to this browser. For production, replace local storage with encrypted backend storage.</p>
+        </div>
+        <div id="userBadge" class="user-badge hidden"></div>
+        <form id="authForm" class="stack">
+          <label>Name<input id="nameInput" name="name" autocomplete="name" placeholder="Your name" required /></label>
+          <label>Email<input id="emailInput" name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
+          <button class="primary full" type="submit">Register / Login</button>
+        </form>
+      </div>
+
+      <div class="panel glass calculator-panel">
+        <div class="section-head compact">
+          <span class="eyebrow">Guided filing</span>
+          <h2>Tax calculation wizard</h2>
+          <p>Choose your country and answer the adaptive questions. Links beside questions point to official or authoritative tax sources.</p>
+        </div>
+
+        <div class="stepper" aria-label="Calculation progress">
+          <span class="step active">Country</span><span class="step">Income</span><span class="step">Deductions</span><span class="step">Result</span>
+        </div>
+
+        <form id="taxForm" class="tax-form">
+          <div class="question-card">
+            <div class="question-title"><h3>1. Select citizenship / tax jurisdiction</h3><a id="countryLaw" target="_blank" rel="noopener">Law source</a></div>
+            <div class="country-grid">
+              <label class="country-option"><input type="radio" name="country" value="BD" checked><span>🇧🇩 Bangladesh</span></label>
+              <label class="country-option"><input type="radio" name="country" value="IN"><span>🇮🇳 India</span></label>
+              <label class="country-option"><input type="radio" name="country" value="US"><span>🇺🇸 USA</span></label>
+            </div>
+          </div>
+
+          <div id="dynamicQuestions" class="stack"></div>
+          <div class="form-actions">
+            <button class="secondary" type="button" id="resetBtn">Reset</button>
+            <button class="primary" type="submit">Calculate taxes</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section results-grid" id="resultsSection" hidden>
+      <div class="panel glass result-panel">
+        <div class="section-head compact">
+          <span class="eyebrow">Result</span>
+          <h2 id="resultTitle">Tax summary</h2>
+          <p id="resultSubtitle">Detailed explainable calculation.</p>
+        </div>
+        <div class="result-kpis" id="resultKpis"></div>
+        <div class="detail-lines" id="detailLines"></div>
+        <div class="form-actions wrap">
+          <button class="primary" type="button" id="saveResult">Save to profile</button>
+          <button class="secondary" type="button" id="downloadPdf">Download PDF</button>
+        </div>
+      </div>
+      <div class="panel glass insight-panel">
+        <h3>Tax reduction opportunities</h3>
+        <div id="taxTips" class="cards-list"></div>
+        <h3>Investment & charity suggestions</h3>
+        <div id="investmentTips" class="cards-list"></div>
+      </div>
+    </section>
+
+    <section class="section law-library" id="laws">
+      <div class="section-head centered">
+        <span class="eyebrow">Database</span>
+        <h2>Tax category library</h2>
+        <p>Summarized categories and reference links for the first supported countries.</p>
+      </div>
+      <div class="law-tabs" role="tablist" aria-label="Country tax library">
+        <button class="tab active" data-law="BD" type="button">Bangladesh</button>
+        <button class="tab" data-law="IN" type="button">India</button>
+        <button class="tab" data-law="US" type="button">USA</button>
+      </div>
+      <div class="law-cards" id="lawCards"></div>
+    </section>
+
+    <section class="section privacy" id="privacy">
+      <div class="panel glass split-panel">
+        <div>
+          <span class="eyebrow">Security model</span>
+          <h2>Built for user privacy.</h2>
+          <p>This demo stores profile and tax history in the browser only. A production system should use strong authentication, encrypted databases, strict access controls, server-side tax validation, audit logs and country-specific compliance review.</p>
+        </div>
+        <ul class="privacy-list">
+          <li>Zero unnecessary questions</li>
+          <li>Delete saved yearly records anytime</li>
+          <li>Law references attached to reports</li>
+          <li>Clear disclaimer before financial decisions</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <aside class="drawer glass" id="profileDrawer" aria-hidden="true">
+    <div class="drawer-head"><h2>Profile & history</h2><button class="ghost" id="closeProfile" type="button">✕</button></div>
+    <div id="profileContent"></div>
+  </aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <dialog id="authDialog" class="auth-dialog glass">
+    <form method="dialog">
+      <button class="ghost dialog-close" aria-label="Close">✕</button>
+    </form>
+    <h2>Welcome to Personal CA</h2>
+    <p>Login or register from the account panel to save tax calculations privately in this browser.</p>
+    <a class="primary full" href="#calculator" onclick="document.getElementById('authDialog').close()">Go to account panel</a>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
